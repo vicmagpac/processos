@@ -1,0 +1,48 @@
+@startuml
+
+==  BOARD - Refinamento ==
+== Novas tarefas ==
+ProductAwner -> BusinessAnalist: Demanda requisitos baseados na EAP
+BusinessAnalist -> BusinessAnalist: Adiciona requisito no board em "News Issues"
+== O que é isso == 
+BusinessAnalist -> BusinessAnalist: Realiza análise prévia da solicitação 
+== Épicos ==
+BusinessAnalist -> BusinessAnalist: Identifica e cria os épicos baseado na EAP
+== Refinamento ==
+BusinessAnalist -> BusinessAnalist: Realiza refinamento das histórias de usuários
+== UX ==
+BusinessAnalist -> UX: Repassa o card para o UX realizar a análise centralizada na experiência do usuário
+== Product backlog ==
+UX --> BusinessAnalist: Adiciona a atividade refinada no product backlog
+== Sprint backlog ==
+BusinessAnalist -> equipe: realiza a planning com a equipe
+equipe --> BusinessAnalist: Define as histórias de usuário para a sprint
+== BOARD - Desenvolvimento ==
+== Kickoff ==
+BusinessAnalist -> desenvolvedor: Realiza o Kickoff com o desenvolvedor
+== In Progress ==
+desenvolvedor -> desenvolvedor: realiza a implementação e testes
+== Review/QA ==
+desenvolvedor --> BusinessAnalist: Validação Review/QA
+alt Caso aprovado
+ BusinessAnalist --> desenvolvedor: Aprova o review/QA
+else Caso reprovado
+ BusinessAnalist --> desenvolvedor: Reprova o review/QA
+ desenvolvedor -> desenvolvedor: realiza a implementação e testes 
+ desenvolvedor --> BusinessAnalist: Validação Review/QA
+end
+== Code Review ==
+desenvolvedor -> liderTecnico: cria o PR
+liderTecnico -> liderTecnico: Avalia o PR (CodeReview)
+alt PR - Caso aprovado
+  liderTecnico -> liderTecnico: Atualiza a homologação
+  liderTecnico -> liderTecnico: Atualiza a produção
+else PR - Caso reprovado
+ liderTecnico --> desenvolvedor: Reprova o review/QA
+ desenvolvedor -> desenvolvedor: realiza a implementação e testes 
+ desenvolvedor -> liderTecnico: Atualiza o PR
+ liderTecnico -> liderTecnico: Avalia o PR (CodeReview)
+end
+
+
+@enduml
