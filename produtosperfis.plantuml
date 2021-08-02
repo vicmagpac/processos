@@ -35,16 +35,18 @@ end
 desenvolvedor -> liderTecnico: cria o PR
 liderTecnico -> liderTecnico: Avalia o PR (CodeReview)
 alt PR - Caso aprovado
+  == Homologação ==
   liderTecnico -> liderTecnico: Atualiza a homologação
-  desenvolvedor -> liderTecnico: Cria o release
-  liderTecnico -> liderTecnico: Atualiza a produção
-  liderTecnico -> BusinessAnalist: Realiza os testes nos ambientes
 else PR - Caso reprovado
- liderTecnico --> desenvolvedor: Reprova o review/QA
  desenvolvedor -> desenvolvedor: realiza a implementação e testes 
  desenvolvedor -> liderTecnico: Atualiza o PR
  liderTecnico -> liderTecnico: Avalia o PR (CodeReview)
 end
+desenvolvedor -> desenvolvedor: Cria o release
+desenvolvedor -> liderTecnico: Informa sobre novo release
+== Produção ==
+liderTecnico -> liderTecnico: Atualiza a produção
+liderTecnico -> BusinessAnalist: Realiza os testes nos ambientes
 
 
 @enduml
